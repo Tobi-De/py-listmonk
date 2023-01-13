@@ -4,11 +4,11 @@ build-backend = "hatchling.build"
 
 [project]
 name = "py-listmonk"
-description = ''
+description = 'A python sdk for listmonk.app api.'
 readme = "README.md"
 requires-python = ">=3.7"
 license = "MIT"
-keywords = []
+keywords = ["Python", "API", "REST", "JSON", "SDK", "Newsletter", "Mailing List"]
 authors = [
   { name = "Tobi DEGNON", email = "tobidegnon@proton.me" },
 ]
@@ -23,13 +23,13 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
-dependencies = []
+dependencies = ["httpx", "attrs", "cattrs", "pendulum"]
 dynamic = ["version"]
 
 [project.urls]
-Documentation = "https://github.com/unknown/py-listmonk#readme"
-Issues = "https://github.com/unknown/py-listmonk/issues"
-Source = "https://github.com/unknown/py-listmonk"
+Documentation = "https://github.com/Tobi-De/py-listmonk#readme"
+Issues = "https://github.com/Tobi-De/py-listmonk/issues"
+Source = "https://github.com/Tobi-De/py-listmonk"
 
 [tool.hatch.version]
 path = "py_listmonk/__about__.py"
@@ -38,6 +38,8 @@ path = "py_listmonk/__about__.py"
 dependencies = [
   "pytest",
   "pytest-cov",
+  "pre-commit",
+  "python-dotenv"
 ]
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=py_listmonk --cov=tests {args}"
@@ -59,3 +61,22 @@ exclude_lines = [
   "if __name__ == .__main__.:",
   "if TYPE_CHECKING:",
 ]
+
+[tool.ruff]
+line-length = 120
+select = [
+    "E", # https://github.com/charliermarsh/ruff#pycodestylet
+    "F", # https://github.com/charliermarsh/ruff#pyflakes
+    "UP", # https://github.com/charliermarsh/ruff#pyupgrade
+    "N", # https://github.com/charliermarsh/ruff#pep8-naming
+    "S", # https://github.com/charliermarsh/ruff#flake8-bandit
+    "C", # https://github.com/charliermarsh/ruff#flake8-comprehensions
+    "B", # https://github.com/charliermarsh/ruff#flake8-bugbear
+    "T" # https://github.com/charliermarsh/ruff#flake8-print
+]
+extend-exclude = [
+    "templates/*",
+    "tests/*",
+    "docs/*"
+]
+ignore = ["B008", "T201"]
