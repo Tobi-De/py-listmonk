@@ -1,3 +1,4 @@
+import asyncio
 from functools import partial
 
 import httpx
@@ -13,8 +14,13 @@ httpx_client = partial(
     auth=(config["LISTMONK_USER_LOGIN"], config["LISTMONK_USER_PASS"]),
 )
 
+
+async def main():
+    async with httpx_client() as client:
+        listmonk = Listmonk(client)
+        subs = await listmonk.subscribers.async_all()
+        print(await listmonk.subscribers.async_get(subs[0].id))
+
+
 if __name__ == "__main__":
-    with httpx_client() as http_client:
-        listmonk = Listmonk(http_client=http_client)
-        subs = listmonk.subscribers.all()
-        print(listmonk.subscribers.get(subs[0].id))
+    asyncio.run(main())
