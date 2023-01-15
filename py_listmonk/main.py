@@ -9,7 +9,7 @@ from py_listmonk import Listmonk
 config = dotenv_values(".env")
 
 httpx_client = partial(
-    httpx.Client,
+    httpx.AsyncClient,
     base_url=config["LISTMONK_APP_URL"],
     auth=(config["LISTMONK_USER_LOGIN"], config["LISTMONK_USER_PASS"]),
 )
