@@ -36,10 +36,12 @@ path = "py_listmonk/__about__.py"
 
 [tool.hatch.envs.default]
 dependencies = [
-  "pytest",
-  "pytest-cov",
-  "pre-commit",
-  "python-dotenv"
+    "pytest",
+    "pytest-cov",
+    "pytest-asyncio",
+    "pytest-httpx",
+    "pre-commit",
+    "python-dotenv"
 ]
 [tool.hatch.envs.default.scripts]
 cov = "pytest --cov-report=term-missing --cov-config=pyproject.toml --cov=py_listmonk --cov=tests {args}"
@@ -75,7 +77,6 @@ select = [
     "T" # https://github.com/charliermarsh/ruff#flake8-print
 ]
 extend-exclude = [
-    "templates/*",
     "tests/*",
     "docs/*"
 ]

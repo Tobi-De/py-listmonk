@@ -10,12 +10,20 @@
 
 - [Installation](#installation)
 - [License](#license)
+- [Development](#development)
 
 ## Installation
 
 ```console
 pip install py-listmonk
 ```
+
+## Development
+
+Running the tests required a local instance of listmonk available. You can easily setup a local instance using their
+[demo docker-compose file](https://github.com/knadh/listmonk#demo).
+
+```console
 
 ## License
 
