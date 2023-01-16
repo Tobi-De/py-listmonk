@@ -4,6 +4,7 @@ import httpx
 from attrs import define
 from pendulum import DateTime
 
+from py_listmonk import async_to_sync
 from py_listmonk.converter import converter
 
 try:
@@ -52,17 +53,18 @@ class Subscriber:
     lists: list[SubList]
 
 
+@async_to_sync.add_sync_api
 class SubscriberAPI:
     def __init__(self, http_client: httpx.AsyncClient):
         self.http_client = http_client
 
-    async def async_all(self) -> list[Subscriber]:
+    async def all_async(self) -> list[Subscriber]:
         response = await self.http_client.get("/subscribers")
         data = response.json()["data"]
         results = data["results"]
         return converter.structure(results, list[Subscriber])
 
-    async def async_get(self, subscriber_id: int) -> Subscriber:
+    async def get_async(self, subscriber_id: int) -> Subscriber:
         response = await self.http_client.get(f"/subscribers/{subscriber_id}")
         data = response.json()["data"]
         return converter.structure(data, Subscriber)
